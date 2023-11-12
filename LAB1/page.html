@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang='ru'>
+
+<head>
+    <meta charset='utf-8' />
+    <title> Lab1 X3DOM </title>
+    <script src='https://www.x3dom.org/download/dev/x3dom-full.js'></script>
+    <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'>
+    <style>
+        x3d {
+            border: 4px solid rgba(41, 112, 73, 0.863);
+            background-image: url('night_sky_2.png');
+            background-size: 120%;
+        }
+
+        body {
+            font-size: 100%;
+            font-family: verdana, sans-serif;
+            background: rgba(7, 12, 171, 0.4);
+            color: rgb(28, 0, 139);
+        }
+
+        h1 {
+            color: rgb(28, 0, 139);
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Студент ГУАП группы 4143 Снурников Я.Д.</h1>
+    <x3d width='800px' height='600px' xmlns='https://www.x3dom.org/x3dom'>
+        <scene>
+            <!-- rotation=R scale=S scaleOrientation=SR translation=T -->
+            <transform translation='0 0 -0.6'>
+                <shape>
+                    <appearance>
+                        <material diffuseColor='1 1 0'></material>
+                    </appearance>
+                    <Plane size='10, 10' solid='false'>
+                    </Plane>
+                </shape>
+            </transform>
+
+            <transform translation='-3.5 -2 -0.59'>
+                <shape>
+                    <appearance>
+                        <material diffuseColor='0 0.7 0'></material>
+                    </appearance>
+                    <Text string='Мы пришли с миром!' solid='false' string='the'>
+                        <fontstyle size='0.6' style='bolditalic'>
+                        </fontstyle>
+                    </Text>
+                </shape>
+            </transform>
+
+            <transform translation='-2 0.3 -0.45'>
+                <transform rotation='1 0 0 1.57'>
+                    <anchor 
+                    url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0_%D0%9C%D0%B8%D0%BA%D0%B5%D1%80%D0%B8%D0%BD%D0%B0' 
+                    parameter='target='_self''>
+                        <shape DEF='SmallPyramid'>
+                            <appearance>
+                                <material diffuseColor='1 1 0'></material>
+                            </appearance>
+                            <pyramid height='0.3' xbottom='0.6' ybottom='0.6' xtop='0' ytop='0' xoff='0' yoff='0'
+                                solid='true'>
+                            </pyramid>
+                        </shape>
+                    </anchor>
+                </transform>
+            </transform>
+
+            <transform translation='0 0 -0.3'>
+                <transform rotation='1 0 0 1.57'>
+                    <anchor 
+                    url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0_%D0%A5%D0%B5%D1%84%D1%80%D0%B5%D0%BD%D0%B0' 
+                    parameter='target='_self''>
+                        <shape DEF='BigPyramid'>
+                            <appearance>
+                                <material diffuseColor='1 1 0'></material>
+                            </appearance>
+                            <pyramid height='0.6' xbottom='1' ybottom='1' xtop='0' ytop='0' xoff='0' yoff='0' solid='true'>
+                            </pyramid>
+                        </shape>
+                    </anchor>
+                </transform>
+            </transform>
+
+            <transform translation='2 0 -0.3'>
+                <transform rotation='1 0 0 1.57'>
+                    <anchor 
+                    url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0_%D0%A5%D0%B5%D0%BE%D0%BF%D1%81%D0%B0' 
+                    parameter='target='_self''>
+                        <shape USE ='BigPyramid'>
+                        </shape>
+                    </anchor>
+                </transform>
+            </transform>
+
+            <extrusion
+            DEF = 'Arm'
+            convex='false'
+            solid = 'false'
+            crossSection='
+                    0.05 0.05
+                    0 0.07
+                    -0.05 0.05
+                    -0.07 0
+                    -0.05 -0.05
+                    0 -0.07
+                    0.05 -0.05
+                    0.07 0
+                    0.05 0.05
+                    '
+                spine='
+                    0 -2 0
+                    0 -1.6 0.13
+                    0 -1.5 0.15
+                    0 -1.4 0.13
+                    0 -1.25 0
+                    0 -1.1 -0.13
+                    0 -1 -0.15
+                    0 -0.9 -0.13
+                    0 -0.75 0
+                    0 -0.6 0.13
+                    0 -0.5 0.15
+                    0 -0.4 0.13
+                    0 0 0
+                    '
+                scale='
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    0.75 0.75
+                    0.25 0.25
+                    '>
+            </extrusion>
+
+            <transform translation='0 1 2.4'>
+                <anchor 
+                url='https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%BE%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D0%BB%D0%B5%D1%82%D0%B0%D1%8E%D1%89%D0%B8%D0%B9_%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82' 
+                parameter='target='_self''>
+                    <group DEF='AlienShip'>
+                        <transform rotation='1 0 0 1.57'>
+                            <shape>
+                                <appearance>
+                                    <pixeltexture image='32 1 3 0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080 
+                                            0x333333 0x808080 0x808080 0x808080' , repeatS='true' , repeatT='true'>
+                                        <textureproperties></textureproperties>
+                                    </pixeltexture>
+                                </appearance>
+                                <snout dbottom='0.8' dtop='2' height='0.2' xoff='0' yoff='0' solid='true'>
+                                </snout>
+                            </shape>
+                        </transform>
+
+                        <transform translation='0 0 0.2'>
+                            <transform rotation='1 0 0 1.57'>
+                                <shape>
+                                    <appearance>
+                                        <pixeltexture image='32 1 3 0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080 
+                                                0x333333 0x808080 0x808080 0x808080' , repeatS='true' , repeatT='true'>
+                                            <textureproperties></textureproperties>
+                                        </pixeltexture>
+                                    </appearance>
+                                    <snout dbottom='2' dtop='0.8' height='0.2' xoff='0' yoff='0' solid='true'>
+                                    </snout>
+                                </shape>
+                            </transform>
+                        </transform>
+
+                        <transform translation='0 0 0.2'>
+                            <transform rotation='1 0 0 1.57'>
+                                <transform scale='1.05 0.7 1.05'>
+                                    <shape>
+                                        <appearance>
+                                            <material diffuseColor='1 1 1'></material>
+                                        </appearance>
+                                        <sphere radius='0.4'>
+                                        </sphere>
+                                    </shape>
+                                </transform>
+                            </transform>
+                        </transform>
+
+                        <transform translation='-0.5 1 -1.8'>
+                            <transform DEF = 'RotatedArm'rotation='1 0 0 -1.2'>
+                                <shape>
+                                    <appearance>
+                                        <material diffuseColor='0.5 0.5 0.5'></material>
+                                    </appearance>
+                                    <x3dgeometrynode USE = 'Arm'>
+                                    </x3dgeometrynode>
+                                </shape>
+                            </transform>
+                        </transform>
+
+                        <transform translation='0.5 1 -1.8'>
+                            <transform USE = 'RotatedArm'>
+                            </transform>
+                        </transform>
+                    </group>
+                </anchor> 
+
+                <transform translation='0 -1 -1.499'>
+                    <transform rotation='1 0 0 1.57'>
+                        <shape DEF = 'Beam'>
+                            <appearance>
+                                <pixeltexture image='8 1 4  0x00a000a0 0x00ff00a0 0x00a000a0 0x00ff00a0 
+                                        0x00a000a0 0x00ff00a0 0x00a000a0 0x00ff00a0' , repeatS='true' , repeatT='true'>
+                                    <textureproperties></textureproperties>
+                                </pixeltexture>
+                            </appearance>
+                            <snout dbottom='2.2' dtop='0.8' height='3.0' xoff='0' yoff='-1'>
+                            </snout>
+                        </shape>
+                    </transform>
+                </transform>
+            </transform>
+
+            <IndexedTriangleStripSet 
+            DEF='Loop'
+            index='[0,1,2,3,4,5,6,7,8,9,10,11]'
+            solid='false'>
+                <Coordinate
+                point=' -5 1 0,
+                        -2 2 0,
+                        -4 5 4,
+                        -2 3 3,
+                        0 5 4,
+                        -2 2 0,
+                        2 2 0,
+                        0 5 4,
+                        2 3 3,
+                        4 5 4,
+                        2 2 0,
+                        5 1 0'>
+                </Coordinate>
+                
+                <ColorRGBA 
+                color=' 0 0.4 0.4 0.7,
+                        1 0.4 0 0.7,
+                        0 1 0 0.7,
+                        0 0 1 0.7,
+                        0 0.4 0.4 0.7,
+                        0.4 0.4 0 0.7,
+                        1 0 1 0.7,
+                        0 0 1 0.7,
+                        1 0 1 0.7,
+                        0 0 1 0.7,
+                        0 0.4 0.4 0.7,
+                        1 0.4 0 0.7'>
+                </ColorRGBA>
+            </IndexedTriangleStripSet>
+
+            <shape>
+                <x3dgeometrynode USE = 'Loop'>
+                </x3dgeometrynode>
+            </shape>
+        </scene>
+    </x3d>
+</body>
+
+</html>
