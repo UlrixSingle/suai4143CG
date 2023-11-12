@@ -4,5 +4,5 @@
 ## Лабораторная работа 1
 - Тема "Разработка X3D-сцены, её представление в формате HTML-страницы и публикация в Web"
 - Работа выполнена в тематике "Пришельцы и их причастность к чудесам света. Египетские пирамиды"
-- Ссылка на html страницу https://htmlpreview.github.io/?https://github.com/UlrixSingle/suai4143CG/blob/main/LAB1/page.html
+- Ссылка на html страницу https://rawcdn.githack.com/UlrixSingle/suai4143CG/6b391d64d0f0047d74227df94f80afd2ae0b4d11/LAB1/page.html
 
