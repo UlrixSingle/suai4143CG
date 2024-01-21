@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang='ru'>
+
+<head>
+    <meta charset='utf-8' />
+    <title> Lab1 X3DOM </title>
+    <script src='https://www.x3dom.org/download/dev/x3dom-full.js'></script>
+    <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css?v=001'>
+    <style>
+        h1 {
+            color: rgb(28, 0, 139);
+        }
+
+        body {
+            font-size: 100%;
+            font-family: verdana, sans-serif;
+            background: rgba(7, 12, 171, 0.4);
+            color: rgb(28, 0, 139);
+        }
+
+        x3d {
+            border: 4px solid rgba(41, 112, 73, 0.863); 
+            background-image: url('night_sky_2.png');
+            background-size: 120%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Студент ГУАП группы 4143 Снурников Я.Д.</h1>
+    <x3d width='800px' height='600px' xmlns='https://www.x3dom.org/x3dom'>
+        <scene>
+            <!-- Background / Задний фон через текстурирование -->
+            <background topurl='night_sky_2.png'>
+            </background>
+
+            <!-- Time / Время по таймеру -->
+            <TimeSensor DEF='Time' cycleInterval='5' loop='true'> 
+            </TimeSensor>
+
+            <!-- bottomurl
+                rotation=R scale=S scaleOrientation=SR translation=T -->
+
+            <!-- Plane / Плоскость -->
+            <transform translation='0 0 -0.6'>
+                <shape>
+                    <appearance>
+                        <material diffuseColor='1 1 0'></material>
+                    </appearance>
+                    <Plane size='10, 10' solid='false'>
+                    </Plane>
+                </shape>
+            </transform>
+
+            <!-- Text / Текст -->
+            <TimeSensor DEF='TextClock' cycleInterval='5' enabled='false' loop='true'/>
+            </TimeSensor>
+            <ColorInterpolator DEF='TextColInt' key = '0 0.1 0.3 0.9 1' keyValue = '0 0.7 0, 0.7 0 0, 0.7 0.7 0.7, 0 0 0.7, 0 0.7 0'>
+            </ColorInterpolator>
+
+            <transform translation='-3.5 -2 -0.59'>
+                <group>
+                    <shape>
+                        <appearance>
+                            <material DEF='TextColour' diffuseColor='0 0.7 0' transparent></material>
+                        </appearance>
+                        <Text string='Мы пришли с миром!' solid='false' string='the'>
+                            <fontstyle size='0.6' style='bolditalic'>
+                            </fontstyle>
+                        </Text>
+                    </shape>
+                    <TouchSensor DEF='TextTouch' description='Press to change colour'>
+                    </TouchSensor>
+                </group>
+            </transform>
+
+            <!-- Small Pyramid / Маленькая пирамида -->
+            <ScalarInterpolator DEF='PyramidTransparencyInt' key = '0 0.5 1' keyValue = '0.1, 0.5, 0.1'>
+            </ScalarInterpolator>
+
+            <transform translation='-2 0.3 -0.45'>
+                <transform rotation='1 0 0 1.57'>
+                    <anchor 
+                    url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0_%D0%9C%D0%B8%D0%BA%D0%B5%D1%80%D0%B8%D0%BD%D0%B0' 
+                    parameter='target='_self''>
+                        <shape DEF='SmallPyramid'>
+                            <appearance>
+                                <material DEF = 'PyramidMaterial' diffuseColor='1 1 0' transparency='0'></material>
+                            </appearance>
+                            <pyramid height='0.3' xbottom='0.6' ybottom='0.6' xtop='0' ytop='0' xoff='0' yoff='0'
+                                solid='true'>
+                            </pyramid>
+                        </shape>
+                    </anchor>
+                </transform>
+            </transform>
+
+            <!-- Big Pyramid 1 / Большая пирамида 1 -->
+            <transform translation='0 0 -0.3'>
+                <transform rotation='1 0 0 1.57'>
+                    <anchor 
+                    url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0_%D0%A5%D0%B5%D1%84%D1%80%D0%B5%D0%BD%D0%B0' 
+                    parameter='target='_self''>
+                        <shape DEF='BigPyramid'>
+                            <appearance>
+                                <material diffuseColor='1 1 0'></material>
+                            </appearance>
+                            <pyramid height='0.6' xbottom='1' ybottom='1' xtop='0' ytop='0' xoff='0' yoff='0' solid='true'>
+                            </pyramid>
+                        </shape>
+                    </anchor>
+                </transform>
+            </transform>
+
+            <!-- Big Pyramid 2 / Большая пирамида 2 -->
+            <transform translation='2 0 -0.3'>
+                <transform rotation='1 0 0 1.57'>
+                    <anchor 
+                    url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0_%D0%A5%D0%B5%D0%BE%D0%BF%D1%81%D0%B0' 
+                    parameter='target='_self''>
+                        <shape USE ='BigPyramid'>
+                        </shape>
+                    </anchor>
+                </transform>
+            </transform>
+
+            <!-- Template of AlienShip Arm / Шаблон руки -->
+            <extrusion
+            DEF = 'Arm'
+            convex='false'
+            solid = 'false'
+            crossSection='
+                    0.05 0.05
+                    0 0.07
+                    -0.05 0.05
+                    -0.07 0
+                    -0.05 -0.05
+                    0 -0.07
+                    0.05 -0.05
+                    0.07 0
+                    0.05 0.05
+                    '
+                spine='
+                    0 -2 0
+                    0 -1.6 0.13
+                    0 -1.5 0.15
+                    0 -1.4 0.13
+                    0 -1.25 0
+                    0 -1.1 -0.13
+                    0 -1 -0.15
+                    0 -0.9 -0.13
+                    0 -0.75 0
+                    0 -0.6 0.13
+                    0 -0.5 0.15
+                    0 -0.4 0.13
+                    0 0 0
+                    '
+                scale='
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    1 1
+                    0.75 0.75
+                    0.25 0.25
+                    '>
+            </extrusion>
+
+            <!-- AlienShip / Корабль, тарелка -->
+            <OrientationInterpolator DEF='AlienShipPlateOrientInt' key='0 0.5 1' keyValue='0 0 1 0, 0 0 1 -3.14, 0 0 1 -6.28'>
+            </OrientationInterpolator>
+
+            <transform translation='0 1 2.4'>
+                <anchor 
+                url='https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%BE%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D0%BB%D0%B5%D1%82%D0%B0%D1%8E%D1%89%D0%B8%D0%B9_%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82' 
+                parameter='target='_self''>
+                    <group DEF='AlienShip'>
+                        <!-- AlienShip Plate / Тело тарелки -->
+                        <transform DEF='AlienShipPlateOrient' rotation='0 0 1 0'>
+                            <!-- AlienShip Bottom Part / Нижняя часть тарелки -->
+                            <group>
+                                <transform rotation='1 0 0 1.57'>
+                                    <shape>
+                                        <appearance>
+                                            <pixeltexture image='32 1 3 0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080 
+                                                    0x333333 0x808080 0x808080 0x808080' , repeatS='true' , repeatT='true'>
+                                                <textureproperties></textureproperties>
+                                            </pixeltexture>
+                                        </appearance>
+                                        <snout dbottom='0.8' dtop='2' height='0.2' xoff='0' yoff='0' solid='true'>
+                                        </snout>
+                                    </shape>
+                                </transform>
+
+                                <!-- AlienShip Upper Part / Верхняя часть тарелки -->
+                                <transform translation='0 0 0.2'>
+                                    <transform rotation='1 0 0 1.57'>
+                                        <shape>
+                                            <appearance>
+                                                <pixeltexture image='32 1 3 0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080 
+                                                        0x333333 0x808080 0x808080 0x808080' , repeatS='true' , repeatT='true'>
+                                                    <textureproperties></textureproperties>
+                                                </pixeltexture>
+                                            </appearance>
+                                            <snout dbottom='2' dtop='0.8' height='0.2' xoff='0' yoff='0' solid='true'>
+                                            </snout>
+                                        </shape>
+                                    </transform>
+                                </transform>
+                            </group>
+
+                            <!-- AlienShipSmallLight / Лампочки на тарелке -->
+                            <transform translation='0 0 0.2'>
+                                <transform translation='0.66 0.35 0'>
+                                    <shape DEF='AlienShipSmallLight'>
+                                        <appearance>
+                                            <material USE='TextColour'></material>
+                                        </appearance>
+                                        <sphere radius='0.05'>
+                                        </sphere>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='0.22 0.72 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='-0.35 0.66 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='-0.72 0.22 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='-0.66 -0.35 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='-0.22 -0.72 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='0.35 -0.66 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+
+                                <transform translation='0.72 -0.22 0'>
+                                    <shape USE='AlienShipSmallLight'>
+                                    </shape>
+                                </transform>
+                            </transform>
+                        </transform>
+
+                        <!-- AlienShip Pilot Cabin / Купол, кабина корабля -->
+                        <transform translation='0 0 0.2'>
+                            <transform rotation='1 0 0 1.57'>
+                                <transform scale='1.05 0.7 1.05'>
+                                    <shape>
+                                        <appearance>
+                                            <material diffuseColor='1 1 1'></material>
+                                        </appearance>
+                                        <sphere radius='0.4'>
+                                        </sphere>
+                                    </shape>
+                                </transform>
+                            </transform>
+                        </transform>
+
+                        <!-- AlienShip Arm 1 / Рука 1 -->
+                        <transform translation='-0.5 1 -1.8'>
+                            <transform DEF = 'RotatedArm'rotation='1 0 0 -1.2'>
+                                <shape>
+                                    <appearance>
+                                        <material diffuseColor='0.5 0.5 0.5'></material>
+                                    </appearance>
+                                    <x3dgeometrynode USE = 'Arm'>
+                                    </x3dgeometrynode>
+                                </shape>
+                            </transform>
+                        </transform>
+
+                        <!-- AlienShip Arm 2 / Рука 2 -->
+                        <transform translation='0.5 1 -1.8'>
+                            <transform USE = 'RotatedArm'>
+                            </transform>
+                        </transform>
+                    </group>
+                </anchor> 
+
+                <!-- AlienShip Beam / Луч корабля -->
+                <transform translation='0 -1 -1.499'>
+                    <transform rotation='1 0 0 1.57'>
+                        <shape DEF = 'Beam'>
+                            <appearance>
+                                <pixeltexture image='8 1 4  0x00a000a0 0x00ff00a0 0x00a000a0 0x00ff00a0 
+                                        0x00a000a0 0x00ff00a0 0x00a000a0 0x00ff00a0' , repeatS='true' , repeatT='true'>
+                                    <textureproperties></textureproperties>
+                                </pixeltexture>
+                            </appearance>
+                            <snout dbottom='2.2' dtop='0.8' height='3.0' xoff='0' yoff='-1'>
+                            </snout>
+                        </shape>
+                        <SphereSensor DEF='SphereSensor' description='click to activate SphereSensor'/> 
+                        </SphereSensor>
+                    </transform>
+                </transform>
+            </transform>
+
+            <!-- Template of GlowBarrier / Шаблон цветного фона свечения -->
+            <IndexedTriangleStripSet 
+            DEF='GlowBarrier'
+            index='[0,1,2,3,4,5,6,7,8,9,10,11]'
+            solid='false'>
+                <Coordinate
+                point=' -5 1 0,
+                        -2 2 0,
+                        -4 5 4,
+                        -2 3 3,
+                        0 5 4,
+                        -2 2 0,
+                        2 2 0,
+                        0 5 4,
+                        2 3 3,
+                        4 5 4,
+                        2 2 0,
+                        5 1 0'>
+                </Coordinate>
+
+                <ColorRGBA DEF = 'GlowColour'
+                color=' 0 0.4 0.4 0.7,
+                        1 0.4 0 0.7,
+                        0 1 0 0.7,
+                        0 0 1 0.7,
+                        0 0.4 0.4 0.7,
+                        0.4 0.4 0 0.7,
+                        1 0 1 0.7,
+                        0 0 1 0.7,
+                        1 0 1 0.7,
+                        0 0 1 0.7,
+                        0 0.4 0.4 0.7,
+                        1 0.4 0 0.7'>
+                </ColorRGBA>
+            </IndexedTriangleStripSet>
+
+            <!-- Template of Glow / Шаблон свечения -->
+            <IndexedTriangleStripSet 
+            DEF='Glow'
+            index='[0,1,2,3,4,5,6,7,8,9,10,11]'
+            solid='false'>
+                <Coordinate
+                point=' -5 1 0,
+                        -2 2 0,
+                        -4 5 4,
+                        -2 3 3,
+                        0 5 4,
+                        -2 2 0,
+                        2 2 0,
+                        0 5 4,
+                        2 3 3,
+                        4 5 4,
+                        2 2 0,
+                        5 1 0'>
+                </Coordinate>
+            </IndexedTriangleStripSet>
+
+            <!-- Glow / Свечение -->
+            <ColorInterpolator DEF='GlowCol1Int' key = '0 0.33 0.66 1' keyValue = '1 0 0, 1 1 1, 0 0 1, 1 0 0'>
+            </ColorInterpolator>
+
+            <transform translation='0 0 -0.6'>
+                <transform translation='0 0 -0.01'>
+                    <shape>
+                        <appearance>
+                            <material DEF='GlowColour' diffuseColor='0.5 0.5 0.5'></material>
+                        </appearance>
+
+                        <x3dgeometrynode USE = 'Glow'>
+                        </x3dgeometrynode>
+                    </shape>
+                </transform>
+
+                <shape>
+                    <x3dgeometrynode USE = 'GlowBarrier'>
+                    </x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!-- Cylinder -->
+
+            <transform DEF='CylRot' translation='3 -2 1'>
+                <group>
+                    <shape>
+                        <appearance>
+                            <material diffuseColor='1 0.1 0.7'>
+                            </material>
+                        </appearance>
+                        <cylinder radius='0.3' height='0.5'>
+                        </cylinder> 
+                    </shape>
+                    <SphereSensor DEF='Rotator' enabled = 'true'>
+                    </SphereSensor>
+                </group>
+            </transform>
+
+
+            <!-- Routes logic / Логика маршрутов -->
+            
+            <!-- Text / Текст -->
+            <ROUTE fromNode='TextTouch' fromField='isActive' toNode='TextClock' toField='enabled'/> 
+            </ROUTE>
+            <ROUTE fromNode='TextClock' fromField='fraction_changed' toNode='TextColInt' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='TextColInt' fromField='value_changed' toNode='TextColour' toField='set_diffuseColor'>
+            </ROUTE>
+
+            <!-- Small Pyramid / Маленькая пирамида -->
+            <ROUTE fromNode='Time' fromField='fraction_changed' toNode='PyramidTransparencyInt' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='PyramidTransparencyInt' fromField='value_changed' toNode='PyramidMaterial' toField='set_transparency'>
+            </ROUTE>
+
+            <!-- AlienShip / Корабль, тарелка -->
+            <ROUTE fromNode='Time' fromField='fraction_changed' toNode='AlienShipPlateOrientInt' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='AlienShipPlateOrientInt' fromField='value_changed' toNode='AlienShipPlateOrient' toField='set_rotation'>
+            </ROUTE>
+
+            <!-- Glow / Свечение -->
+            <ROUTE fromNode='Time' fromField='fraction_changed' toNode='GlowCol1Int' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='GlowCol1Int' fromField='value_changed' toNode='GlowColour' toField='set_diffuseColor'>
+            </ROUTE>
+            <ROUTE fromNode='GlowCol1Int' fromField='value_changed' toNode='AlienShipSmallLightColour' toField='set_diffuseColor'>
+            </ROUTE>
+
+            <ROUTE fromNode="Rotator" fromField="rotation_changed" toNode="CylRot" toField="set_rotation" >
+            </ROUTE>
+        </scene>
+    </x3d>
+</body>
+
+</html>
